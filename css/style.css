@@ -1,0 +1,387 @@
+/*
+	Phantom by HTML5 UP (html5up.net)
+	Free for personal and commercial use under the CCA 3.0 license
+	Modified for VELORA Sustainable Upcycling Studio
+*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+	--bg-body: #ffffff;
+	--bg-light: #f7f6f2;
+	--text-main: #585858;
+	--text-dark: #222522;
+	--accent-olive: #4f5d48;
+	--accent-sage: #8f9e8b;
+	--border: #e6e4df;
+	--font-main: 'Source Sans Pro', Helvetica, sans-serif;
+	--font-heading: 'Playfair Display', Georgia, serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: var(--bg-body);
+	color: var(--text-main);
+	font-family: var(--font-main);
+	font-size: 16pt;
+	font-weight: 300;
+	line-height: 1.75;
+}
+
+h1, h2, h3, h4 {
+	color: var(--text-dark);
+	font-family: var(--font-heading);
+	font-weight: 600;
+	line-height: 1.3;
+	margin-bottom: 1em;
+}
+
+h1 { font-size: 2.8em; }
+h2 { font-size: 1.75em; border-bottom: 2px solid var(--border); padding-bottom: 0.3em; }
+h3 { font-size: 1.3em; }
+h4 { font-size: 1.1em; }
+
+p { margin-bottom: 1.5em; }
+strong { font-weight: 600; color: var(--text-dark); }
+a { color: var(--accent-olive); text-decoration: none; border-bottom: 1px dotted; transition: all 0.2s ease; }
+a:hover { border-bottom-color: transparent; color: var(--text-dark); }
+
+.inner {
+	max-width: 68em;
+	margin: 0 auto;
+	padding: 0 2.5em;
+}
+
+/* HEADER PHANTOM */
+#header {
+	padding: 4em 0 2em 0;
+}
+#header .inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+#header .logo {
+	border-bottom: 0;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	color: var(--text-dark);
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	font-size: 1.1em;
+}
+.circle-mark {
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: var(--accent-olive);
+}
+#header nav ul {
+	list-style: none;
+}
+#header nav ul li a {
+	border: 2px solid var(--text-dark);
+	border-radius: 4px;
+	padding: 0.5em 1.2em;
+	font-weight: 600;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	color: var(--text-dark);
+}
+#header nav ul li a:hover {
+	background: var(--text-dark);
+	color: #fff;
+}
+
+/* HERO / INTRO */
+.main-intro {
+	padding: 2em 0 3em 0;
+}
+.badge {
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 0.75em;
+	letter-spacing: 0.2em;
+	color: var(--accent-olive);
+	font-weight: 700;
+	background: rgba(79, 93, 72, 0.1);
+	padding: 0.4em 1em;
+	border-radius: 20px;
+	margin-bottom: 1.5em;
+}
+.lead {
+	font-size: 1.25em;
+	color: #444;
+	line-height: 1.8;
+}
+
+/* CONTENT BLOCKS */
+.content-block {
+	padding: 3em 0;
+	border-top: 1px solid var(--border);
+}
+
+.values-row {
+	display: flex;
+	gap: 2em;
+	margin-top: 2em;
+}
+.val-box {
+	flex: 1;
+	background: var(--bg-light);
+	padding: 2em;
+	border-radius: 6px;
+	border: 1px solid var(--border);
+}
+
+/* TILES (ФИРМЕННАЯ СЕТКА PHANTOM) */
+.tiles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2em;
+	margin-top: 2em;
+}
+.tiles article {
+	flex: 1 1 calc(50% - 1em);
+	position: relative;
+	border-radius: 6px;
+	overflow: hidden;
+	background: #333;
+	color: #fff;
+	min-height: 280px;
+	display: flex;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tiles article:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+.tiles article.style1 { background: linear-gradient(135deg, #4f5d48 0%, #2f382a 100%); }
+.tiles article.style2 { background: linear-gradient(135deg, #6c6356 0%, #3e382f 100%); }
+
+.tiles article a {
+	display: block;
+	padding: 3em 2.5em;
+	color: #fff !important;
+	border-bottom: 0;
+	width: 100%;
+}
+.tiles article h2 {
+	color: #fff;
+	border-bottom: 1px solid rgba(255,255,255,0.3);
+	padding-bottom: 0.5em;
+	font-size: 1.4em;
+}
+.tiles article p {
+	font-size: 0.95em;
+	line-height: 1.6;
+	margin-top: 1em;
+	color: rgba(255,255,255,0.85);
+}
+
+/* PROCESS LIST */
+.process-list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5em;
+	margin-top: 2em;
+}
+.step-item {
+	display: flex;
+	gap: 1.5em;
+	background: var(--bg-light);
+	padding: 1.5em;
+	border-radius: 6px;
+	border: 1px solid var(--border);
+}
+.step-num {
+	font-family: var(--font-heading);
+	font-size: 1.8em;
+	color: var(--accent-olive);
+	font-weight: 700;
+}
+.step-text h4 { margin-bottom: 0.4em; }
+.step-text p { font-size: 0.9em; margin-bottom: 0; }
+
+/* ДВЕ КОЛОНКИ */
+.two-cols {
+	display: flex;
+	gap: 2.5em;
+	margin-top: 1.5em;
+}
+.two-cols .col { flex: 1; }
+
+ul.alt {
+	list-style: none;
+	margin: 1.5em 0;
+}
+ul.alt li {
+	border-top: 1px solid var(--border);
+	padding: 0.8em 0;
+}
+ul.alt li:first-child { border-top: 0; }
+
+/* ФОРМЫ */
+.form-card {
+	background: var(--bg-light);
+	padding: 3em;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+}
+.form-card.secondary {
+	background: #ffffff;
+	border: 2px dashed var(--accent-olive);
+}
+.fields {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5em 2em;
+	margin-bottom: 2em;
+}
+.field { width: 100%; }
+.field.half { width: calc(50% - 1em); }
+label {
+	display: block;
+	font-size: 0.85em;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin-bottom: 0.6em;
+	color: var(--text-dark);
+}
+input[type="text"], select, textarea {
+	width: 100%;
+	padding: 0.8em 1em;
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	font-family: inherit;
+	font-size: 0.95em;
+	color: var(--text-dark);
+	outline: none;
+	transition: border-color 0.2s ease;
+}
+input[type="text"]:focus, select:focus, textarea:focus {
+	border-color: var(--accent-olive);
+}
+ul.actions {
+	list-style: none;
+}
+input[type="submit"] {
+	background: var(--accent-olive);
+	color: #fff;
+	border: 0;
+	padding: 1em 2.5em;
+	border-radius: 4px;
+	font-size: 0.85em;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+input[type="submit"]:hover {
+	background: var(--text-dark);
+}
+
+/* FOOTER */
+#footer {
+	padding: 4em 0;
+	border-top: 1px solid var(--border);
+	background: #faf9f6;
+}
+.footer-contacts h2 { border-bottom: 0; margin-bottom: 0.5em; }
+.icons-list {
+	list-style: none;
+	display: flex;
+	gap: 1.5em;
+	margin: 1.5em 0;
+}
+.footer-bottom {
+	margin-top: 2em;
+	padding-top: 1.5em;
+	border-top: 1px solid var(--border);
+}
+.disclaimer {
+	font-size: 0.8em;
+	color: #888;
+	line-height: 1.6;
+}
+.author {
+	font-size: 0.95em;
+	color: var(--text-dark);
+	margin-top: 0.5em;
+}
+
+/* ВСПЛЫВАЮЩЕЕ МЕНЮ PHANTOM */
+#menu {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 22em;
+	max-width: 100%;
+	height: 100%;
+	background: #242922;
+	color: #fff;
+	padding: 3em 2em;
+	transform: translateX(100%);
+	transition: transform 0.4s ease;
+	z-index: 1000;
+	overflow-y: auto;
+}
+#menu h2 {
+	color: #fff;
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+#menu ul {
+	list-style: none;
+	margin-top: 1.5em;
+}
+#menu ul li a {
+	display: block;
+	padding: 0.6em 0;
+	color: rgba(255,255,255,0.8);
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	font-size: 0.9em;
+}
+#menu ul li a:hover {
+	color: #fff;
+}
+#menu .close {
+	position: absolute;
+	top: 1.5em;
+	right: 1.5em;
+	font-size: 2em;
+	color: #fff;
+	border-bottom: 0;
+	line-height: 1;
+}
+body.is-menu-visible #menu {
+	transform: translateX(0);
+}
+
+/* АДАПТИВНОСТЬ */
+@media screen and (max-width: 980px) {
+	.values-row, .two-cols, .process-list {
+		flex-direction: column;
+		grid-template-columns: 1fr;
+	}
+	.tiles article {
+		flex: 1 1 100%;
+	}
+	.field.half {
+		width: 100%;
+	}
+	h1 { font-size: 2.2em; }
+}
