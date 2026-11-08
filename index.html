@@ -1,0 +1,775 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP (html5up.net)
+	Modified for Educational Individual Project | Velora Upcycling Studio
+-->
+<html lang="uk">
+<head>
+	<title>VELORA — Give clothes a second life | Sustainable Fashion</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Velora — інноваційна студія стійкої моди та апсайклінгу. Ми даруємо вживаному одягу друге життя за допомогою сучасного дизайну." />
+	<link rel="stylesheet" href="css/style.css" />
+	<style>
+		/* Інтерактивний каталог та панель фільтрів Velora */
+		.velora-catalog-section {
+			margin-top: 3em;
+			padding-top: 2em;
+			border-top: 2px solid rgba(255,255,255,0.1);
+		}
+		.v-filter-panel {
+			background: rgba(255, 255, 255, 0.04);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			border-radius: 8px;
+			padding: 1.5em;
+			margin-bottom: 2.5em;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.2em;
+			align-items: flex-end;
+		}
+		.v-filter-group {
+			flex: 1 1 180px;
+			display: flex;
+			flex-direction: column;
+			gap: 0.4em;
+		}
+		.v-filter-group label {
+			font-size: 0.85em;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: #e0e0e0;
+			margin: 0;
+			font-weight: 600;
+		}
+		.v-filter-select {
+			background: #1f2229;
+			color: #ffffff;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			border-radius: 4px;
+			padding: 0.65em 0.9em;
+			font-size: 0.9em;
+			outline: none;
+			cursor: pointer;
+		}
+		.v-filter-select:focus {
+			border-color: #f2849e;
+		}
+		.v-filter-checkbox {
+			display: flex;
+			align-items: center;
+			gap: 0.6em;
+			cursor: pointer;
+			user-select: none;
+			font-size: 0.88em;
+			color: #ffffff;
+			margin-bottom: 0.5em;
+		}
+		.v-filter-checkbox input {
+			width: 18px;
+			height: 18px;
+			cursor: pointer;
+		}
+		.v-counter {
+			font-size: 0.9em;
+			font-weight: bold;
+			color: #f2849e;
+			padding: 0.6em 0;
+			margin-left: auto;
+		}
+		.v-items-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+			gap: 2em;
+		}
+		.v-card {
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 8px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			transition: transform 0.2s ease, border-color 0.2s ease;
+		}
+		.v-card:hover {
+			transform: translateY(-4px);
+			border-color: rgba(242, 132, 158, 0.5);
+		}
+		.v-card-imgbox {
+			position: relative;
+			width: 100%;
+			height: 260px;
+			background: #2a2c35;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
+		.v-card-imgbox img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.v-badge {
+			position: absolute;
+			top: 12px;
+			left: 12px;
+			background: #20c997;
+			color: #0b2219;
+			font-size: 0.75em;
+			font-weight: 700;
+			padding: 4px 10px;
+			border-radius: 4px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+		.v-badge.custom {
+			background: #f2849e;
+			color: #ffffff;
+		}
+		.v-badge.archived {
+			background: #6c757d;
+			color: #ffffff;
+		}
+		.v-card-body {
+			padding: 1.2em;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+		}
+		.v-card-tag {
+			font-size: 0.75em;
+			text-transform: uppercase;
+			color: #f2849e;
+			letter-spacing: 0.1em;
+			margin-bottom: 0.4em;
+			font-weight: bold;
+		}
+		.v-card-title {
+			font-size: 1.15em;
+			margin: 0 0 0.5em 0;
+			line-height: 1.3;
+		}
+		.v-card-desc {
+			font-size: 0.85em;
+			color: #b0b3b8;
+			margin-bottom: 1em;
+			line-height: 1.4;
+		}
+		.v-specs {
+			font-size: 0.8em;
+			color: #cfd2d6;
+			margin-bottom: 1.2em;
+			background: rgba(0,0,0,0.2);
+			padding: 0.6em 0.8em;
+			border-radius: 4px;
+		}
+		.v-specs p {
+			margin: 0 0 0.2em 0;
+		}
+		.v-card-footer {
+			margin-top: auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-top: 0.8em;
+			border-top: 1px solid rgba(255,255,255,0.08);
+		}
+		.v-card-price {
+			font-size: 1.2em;
+			font-weight: 700;
+			color: #ffffff;
+		}
+		.v-btn-order {
+			background: #f2849e;
+			color: #ffffff !important;
+			border: none;
+			padding: 0.4em 1em;
+			border-radius: 4px;
+			font-size: 0.85em;
+			font-weight: 600;
+			text-decoration: none;
+			text-transform: uppercase;
+			cursor: pointer;
+		}
+		.v-btn-order:hover {
+			background: #d96b85;
+		}
+	</style>
+</head>
+<body class="is-preload">
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+				<!-- Logo -->
+				<a href="index.html" class="logo">
+					<span class="symbol"><span class="circle-mark"></span></span>
+					<span class="title">VELORA STUDIO</span>
+				</a>
+
+				<!-- Nav -->
+				<nav>
+					<ul>
+						<li><a href="#menu">Меню</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<h2>Навігація</h2>
+			<ul>
+				<li><a href="#about">Про компанію</a></li>
+				<li><a href="#catalog">Каталог рішень</a></li>
+				<li><a href="#directions">Напрями роботи</a></li>
+				<li><a href="#process">Виробничий процес</a></li>
+				<li><a href="#values">Конкурентні переваги</a></li>
+				<li><a href="#audience">Цільова аудиторія</a></li>
+				<li><a href="#ecology">Екологічна концепція</a></li>
+				<li><a href="#recycle">Програма прийому речей</a></li>
+				<li><a href="#custom">Індивідуальні замовлення</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+				
+				<!-- Hero / Intro -->
+				<header class="main-intro">
+					<span class="badge">Sustainable Fashion & Upcycling Initiative</span>
+					<h1>Give clothes a second life.<br>Create something extraordinary.</h1>
+					<p class="lead">
+						<strong>Velora</strong> — інноваційна компанія у сфері стійкої моди (Sustainable Fashion), що спеціалізується на переробці, реставрації та дизайнерському переосмисленні старого, непотрібного та пошкодженого одягу. Ми розглядаємо вживані речі як джерело високого естетичного потенціалу, перетворюючи текстиль на унікальні авторські вироби.
+					</p>
+				</header>
+
+				<!-- Блок 1: Про компанію та цінності -->
+				<section id="about" class="content-block">
+					<h2>1. Загальна інформація та філософія бренду</h2>
+					<p>
+						Місія Velora — змінити ставлення суспільства до одягу та культури споживання, довівши, що старі речі можуть набувати якісно нової цінності завдяки креативному дизайну, сучасним технологіям крою та відповідальному виробництву. Ми не є стандартним секонд-хендом чи благодійним фондом — Velora розвиває естетику сучасного авторського fashion-бренду.
+					</p>
+					<div class="values-row">
+						<div class="val-box">
+							<h4>Екологічна відповідальність</h4>
+							<p>Пряме скорочення текстильних відходів та мінімізація вуглецевого сліду від перевиробництва тканин.</p>
+						</div>
+						<div class="val-box">
+							<h4>Індивідуальність</h4>
+							<p>Кожен готовий виріб несе в собі індивідуальну історію первинного матеріалу та існує в єдиному екземплярі.</p>
+						</div>
+						<div class="val-box">
+							<h4>Якість і довговічність</h4>
+							<p>Використання посилених технологічних швів, ручного відбору фурнітури та професійного швейного обладнання.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- БЛОК КАТАЛОГУ З МУЛЬТИФІЛЬТРАЦІЄЮ (Лабораторна робота №3) -->
+				<section id="catalog" class="content-block velora-catalog-section">
+					<h2>Каталог виробів та кастом-послуг</h2>
+					<p>Обирайте готові апсайкл-айтеми, замовляйте персональний редизайн або обирайте речі за матеріалом та бюджетом на основі семантики попиту.</p>
+					
+					<!-- Панель мультифільтрації -->
+					<div class="v-filter-panel">
+						<!-- Фільтр формату -->
+						<div class="v-filter-group">
+							<label for="formatFilter">Формат / Напрям:</label>
+							<select id="formatFilter" class="v-filter-select">
+								<option value="all">Усі формати</option>
+								<option value="upcycling">Готовий дроп (Upcycling)</option>
+								<option value="custom">Індивідуальний кастом</option>
+								<option value="recycle">Прийом речей (Recycle)</option>
+							</select>
+						</div>
+
+						<!-- Фільтр категорії -->
+						<div class="v-filter-group">
+							<label for="categoryFilter">Тип виробу:</label>
+							<select id="categoryFilter" class="v-filter-select">
+								<option value="all">Усі категорії</option>
+								<option value="jackets">Куртки та жакети</option>
+								<option value="jeans">Джинси та брюки</option>
+								<option value="corsets">Корсети та топи</option>
+								<option value="bags">Шопери та аксесуари</option>
+							</select>
+						</div>
+
+						<!-- Фільтр матеріалу -->
+						<div class="v-filter-group">
+							<label for="materialFilter">Матеріал основи:</label>
+							<select id="materialFilter" class="v-filter-select">
+								<option value="all">Усі матеріали</option>
+								<option value="denim">Upcycled Denim</option>
+								<option value="wool">Твід та вовна</option>
+								<option value="cotton">Бавовна та льон</option>
+								<option value="patchwork">Zero-Waste Клаптики</option>
+							</select>
+						</div>
+
+						<!-- Сортування за вартістю -->
+						<div class="v-filter-group">
+							<label for="sortPrice">Ціна:</label>
+							<select id="sortPrice" class="v-filter-select">
+								<option value="default">За замовчуванням</option>
+								<option value="asc">Від доступних до дорожчих</option>
+								<option value="desc">Від дорожчих до доступних</option>
+							</select>
+						</div>
+
+						<!-- Чекбокс паспорта речі -->
+						<div class="v-filter-group" style="flex: 0 0 auto;">
+							<label class="v-filter-checkbox">
+								<input type="checkbox" id="passportOnly">
+								<span>З Паспортом речі</span>
+							</label>
+						</div>
+
+						<!-- Лічильник знайденого -->
+						<div class="v-counter">
+							Знайдено: <span id="itemsCount">6</span> позицій
+						</div>
+					</div>
+
+					<!-- Сітка айтемів каталогу -->
+					<div class="v-items-grid" id="itemsGrid">
+						
+						<!-- 1. Апсайкл куртка пэчворк -->
+						<div class="v-card" data-format="upcycling" data-category="jackets" data-material="denim" data-price="4800" data-passport="true">
+							<div class="v-card-imgbox">
+								<span class="v-badge">В наявності (1 шт.)</span>
+								<img src="images/pic01.jpg" alt="Апсайкл куртка пэчворк Velora" onerror="this.src='https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=600&auto=format&fit=crop&q=80'">
+							</div>
+							<div class="v-card-body">
+								<span class="v-card-tag">Upcycling Drop • Денім</span>
+								<h3 class="v-card-title">Patchwork Denim Jacket "Re:Born"</h3>
+								<p class="v-card-desc">Авторська куртка, сконструйована з 4 вінтажних джинсових пар різних відтінків синього. Посилені шви, необроблені краї.</p>
+								<div class="v-specs">
+									<p><strong>Розмір:</strong> Oversize (M–L)</p>
+									<p><strong>Паспорт речі:</strong> #014 (збережено 2.4 кг текстилю)</p>
+								</div>
+								<div class="v-card-footer">
+									<span class="v-card-price">4 800 ₴</span>
+									<a href="#custom" class="v-btn-order">Замовити</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 2. Джинсовий корсет зі старих штанів -->
+						<div class="v-card" data-format="upcycling" data-category="corsets" data-material="denim" data-price="2400" data-passport="true">
+							<div class="v-card-imgbox">
+								<span class="v-badge">В наявності (1 шт.)</span>
+								<img src="images/pic02.jpg" alt="Джинсовий корсет Velora" onerror="this.src='https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=600&auto=format&fit=crop&q=80'">
+							</div>
+							<div class="v-card-body">
+								<span class="v-card-tag">Upcycling Drop • Топи</span>
+								<h3 class="v-card-title">Upcycled Denim Corset Top</h3>
+								<p class="v-card-desc">Анатомічний корсет зі шнурівкою на спині, перешитий із поясної частини та кишень класичних джинсів Levi's.</p>
+								<div class="v-specs">
+									<p><strong>Розмір:</strong> S (регулюється шнурівкою)</p>
+									<p><strong>Паспорт речі:</strong> #021 (ручний розкрій)</p>
+								</div>
+								<div class="v-card-footer">
+									<span class="v-card-price">2 400 ₴</span>
+									<a href="#custom" class="v-btn-order">Замовити</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 3. Шопер з перероблених матеріалів -->
+						<div class="v-card" data-format="upcycling" data-category="bags" data-material="patchwork" data-price="1200" data-passport="true">
+							<div class="v-card-imgbox">
+								<span class="v-badge">В наявності (2 шт.)</span>
+								<img src="images/pic03.jpg" alt="Шопер з перероблених матеріалів Velora" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&auto=format&fit=crop&q=80'">
+							</div>
+							<div class="v-card-body">
+								<span class="v-card-tag">Zero-Waste • Аксесуари</span>
+								<h3 class="v-card-title">Zero-Waste Shopper Bag</h3>
+								<p class="v-card-desc">Місткий шопер із текстильної мозаїки (обрізки льону, бавовни та твіду). Внутрішня кишеня з вінтажної джинсової кишені.</p>
+								<div class="v-specs">
+									<p><strong>Розмір:</strong> 42 × 38 см (ручки 65 см)</p>
+									<p><strong>Паспорт речі:</strong> #038 (100% Zero-Waste)</p>
+								</div>
+								<div class="v-card-footer">
+									<span class="v-card-price">1 200 ₴</span>
+									<a href="#custom" class="v-btn-order">Замовити</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 4. Послуга: Індивідуальний кастом джинсів -->
+						<div class="v-card" data-format="custom" data-category="jeans" data-material="denim" data-price="1800" data-passport="false">
+							<div class="v-card-imgbox">
+								<span class="v-badge custom">Під замовлення</span>
+								<img src="images/pic04.jpg" alt="Індивідуальний кастом джинсів" onerror="this.src='https://images.unsplash.com/photo-1542272604-780c96856592?w=600&auto=format&fit=crop&q=80'">
+							</div>
+							<div class="v-card-body">
+								<span class="v-card-tag">Custom Studio • Послуга</span>
+								<h3 class="v-card-title">Кастомізація джинсів замовника</h3>
+								<p class="v-card-desc">Редизайн ваших старих джинсів: посадка по фігурі, вставки з іншого деніму, аплікації, бахрома або трансформація в карго.</p>
+								<div class="v-specs">
+									<p><strong>Термін:</strong> 3–5 робочих днів</p>
+									<p><strong>Матеріали:</strong> Речі клієнта + фурнітура студії</p>
+								</div>
+								<div class="v-card-footer">
+									<span class="v-card-price">від 1 800 ₴</span>
+									<a href="#custom" class="v-btn-order">Замовити</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 5. Послуга: Редизайн пальта / твідового жакета -->
+						<div class="v-card" data-format="custom" data-category="jackets" data-material="wool" data-price="3600" data-passport="false">
+							<div class="v-card-imgbox">
+								<span class="v-badge custom">Під замовлення</span>
+								<img src="images/pic05.jpg" alt="Редизайн пальта та жакетів" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=80'">
+							</div>
+							<div class="v-card-body">
+								<span class="v-card-tag">Custom Studio • Верхній одяг</span>
+								<h3 class="v-card-title">Перешив вінтажного пальта / жакета</h3>
+								<p class="v-card-desc">Повне конструктивне перекроювання застарілих вовняних чи твідових пальт у сучасні вкорочені жакети оверсайз крою.</p>
+								<div class="v-specs">
+									<p><strong>Термін:</strong> 5–7 робочих днів</p>
+									<p><strong>Матеріали:</strong> Твід, вовна, нова віскозна підкладка</p>
+								</div>
+								<div class="v-card-footer">
+									<span class="v-card-price">від 3 600 ₴</span>
+									<a href="#custom" class="v-btn-order">Замовити</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 6. Програма: Прийом речей (Recycle Box) -->
+						<div class="v-card" data-format="recycle" data-category="bags" data-material="cotton" data-price="0" data-passport="false">
+							<div class="v-card-imgbox">
+								<span class="v-badge" style="background:#0dcaf0; color:#000;">Еко-бонус</span>
+								<img src="images/pic06.jpg" alt="Програма прийому речей Velora" onerror="this.src='https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&auto=format&fit=crop&q=80'">
+							</div>
+							<div class="v-card-body">
+								<span class="v-card-tag">Recycle Initiative • Обмін</span>
+								<h3 class="v-card-title">Здача гардеробу на переробку</h3>
+								<p class="v-card-desc">Передайте свій старий одяг студії Velora для повторного використання та отримайте знижку 20% або накопичувальні еко-бали.</p>
+								<div class="v-specs">
+									<p><strong>Умови:</strong> Від 3 одиниць текстилю</p>
+									<p><strong>Вигода:</strong> Знижка 20% на всі вироби бренду</p>
+								</div>
+								<div class="v-card-footer">
+									<span class="v-card-price">Безкоштовно</span>
+									<a href="#recycle" class="v-btn-order">Здати</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</section>
+
+				<!-- Блок 2: Як працює компанія (Плитка Phantom) -->
+				<section id="directions" class="content-block">
+					<h2>2. Як працює Velora: два стратегічні вектори</h2>
+					<p>Бізнес-модель компанії ґрунтується на концепції <strong>Upcycling</strong> — вторинного використання сировини зі створенням продукту вищої цінності:</p>
+					
+					<section class="tiles">
+						<article class="style1">
+							<span class="image"></span>
+							<a href="#recycle">
+								<h2>Напрям №1. Прийом одягу від клієнтів</h2>
+								<div class="content">
+									<p>Замість утилізації речей люди передають непотрібний гардероб компанії. Клієнти мотивуються спеціальною системою винагород: бонусними балами та накопичувальними знижками на майбутні замовлення.</p>
+								</div>
+							</a>
+						</article>
+						<article class="style2">
+							<span class="image"></span>
+							<a href="#custom">
+								<h2>Напрям №2. Власне виробництво та переробка</h2>
+								<div class="content">
+									<p>Сортування сировини, експертна оцінка щільності й текстури тканин, створення авторських колекцій одягу, шоперів, головних уборів та предметів інтер'єру з мінімізацією залишків.</p>
+								</div>
+							</a>
+						</article>
+					</section>
+				</section>
+
+				<!-- Блок 3: Виробничий процес (6 кроків) -->
+				<section id="process" class="content-block">
+					<h2>3. Виробничий цикл студії (How it Works)</h2>
+					<p>Послідовна технологічна карта Velora забезпечує повний контроль якості на кожному етапі трансформації матеріалу:</p>
+					
+					<div class="process-list">
+						<div class="step-item">
+							<div class="step-num">01</div>
+							<div class="step-text">
+								<h4>Збір матеріалів</h4>
+								<p>Прийом речей від приватних клієнтів, закупівля вінтажних моделей та збір виробничих текстильних залишків.</p>
+							</div>
+						</div>
+						<div class="step-item">
+							<div class="step-num">02</div>
+							<div class="step-text">
+								<h4>Сортування та оцінка</h4>
+								<p>Дефектовка текстилю, класифікація за типом волокон (бавовна, денім, льон, твід, вовна), кольором та зносостійкістю.</p>
+							</div>
+						</div>
+						<div class="step-item">
+							<div class="step-num">03</div>
+							<div class="step-text">
+								<h4>Розробка дизайну</h4>
+								<p>Створення концептуальних ескізів, комбінування клаптиків (patchwork), підбір стилістики з урахуванням особливостей вхідних тканин.</p>
+							</div>
+						</div>
+						<div class="step-item">
+							<div class="step-num">04</div>
+							<div class="step-text">
+								<h4>Підготовка матеріалів</h4>
+								<p>Професійне екологічне очищення, дезінфекція, делікатний розпуск старих швів та видалення непридатних елементів.</p>
+							</div>
+						</div>
+						<div class="step-item">
+							<div class="step-num">05</div>
+							<div class="step-text">
+								<h4>Виробництво та пошиття</h4>
+								<p>Конструювання виробів швачками на спеціалізованих верстатах, оверлоках і прасувальних станціях.</p>
+							</div>
+						</div>
+						<div class="step-item">
+							<div class="step-num">06</div>
+							<div class="step-text">
+								<h4>Контроль якості та «Паспорт речі»</h4>
+								<p>Фінальне тестування швів, маркування індивідуальною історією походження волокон та передача виробу клієнту.</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Блок 4: Унікальні особливості та паспорт другого життя -->
+				<section id="values" class="content-block">
+					<h2>4. Конкурентні переваги та «Паспорт другого життя»</h2>
+					<p>Velora позиціонується на перетині технологій збереження довкілля та дизайнерської творчості:</p>
+					<ul class="alt">
+						<li><strong>Паспорт другого життя:</strong> Кожен виріб супроводжується сертифікатом із зазначенням, з яких предметів гардеробу його було виготовлено та яку функцію отримали збережені деталі.</li>
+						<li><strong>Персоналізація (Custom Studio):</strong> Можливість для клієнта надати власні дорогі серцю пам'ятні речі для їх індивідуального переосмислення у новий жакет чи аксесуар.</li>
+						<li><strong>Робота з текстильними залишками (Zero-Waste):</strong> Навіть дрібні обрізки тканин не стають відходами — вони використовуються для текстильних мозаїк, наповнювачів або декоративних панно.</li>
+						<li><strong>Прозора система бонусів:</strong> Заохочення свідомого споживання реальними знижками за зданий одяг.</li>
+					</ul>
+				</section>
+
+				<!-- Блок 5: Цільова аудиторія, Ціноутворення та Економіка -->
+				<section id="audience" class="content-block">
+					<h2>5. Цільова аудиторія та економічна модель</h2>
+					<div class="two-cols">
+						<div class="col">
+							<h3>Цільова аудиторія</h3>
+							<p>Основне ядро: прогресивна молодь віком <strong>16–30 років</strong>, яка стежить за трендами sustainable fashion, цінує самовираження та нестандартні рішення в гардеробі. Додатковий сегмент (31–45 років) — свідомі споживачі, зацікавлені в екологічній відповідальності, високій якості пошиття та індивідуальних кастомних проєктах.</p>
+						</div>
+						<div class="col">
+							<h3>Ціноутворення та модель доходу</h3>
+							<p>Орієнтовна середня вартість готового або індивідуального авторського виробу становить <strong>~3 000 грн</strong>. Ціна формується не з первинної сировини, а з високої трудомісткості ручного розкрою, складності дизайну та унікальності моделі.</p>
+							<p><em>Сценарні орієнтири виручки:</em> 50 виробів/міс. — 150 000 грн; 150 виробів/міс. — 450 000 грн; 300 виробів/міс. — 900 000 грн.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Блок 6: Екологічна концепція -->
+				<section id="ecology" class="content-block">
+					<h2>6. Екологічна відповідальність та метрики впливу</h2>
+					<p>
+						Velora принципово відмовляється від декларативного «грінвошингу». Екологічна ініціатива проєкту передбачає ведення реального системного обліку показників сталого розвитку: маси зібраного та переробленого текстилю (в кг), кількості речей, врятованих від полігонів, відсотка повторно використаних відрізів та обсягів заощадженої води й електроенергії у порівнянні з первинним ткацьким виробництвом.
+					</p>
+				</section>
+
+				<!-- Блок 7: Інтерактивна форма прийому речей -->
+				<section id="recycle" class="content-block form-card">
+					<h2>Ініціатива: Здати одяг на апсайклінг</h2>
+					<p>Передайте свої непотрібні або пошкоджені речі майстерні Velora та отримайте бонусні бали й знижку до 20% на нові дизайнерські вироби бренду.</p>
+					
+					<form method="post" action="#" onsubmit="event.preventDefault(); alert('Дякуємо! Ваша заявка прийнята. Менеджер зв\'яжеться з вами для уточнення деталей передачі речей.');">
+						<div class="fields">
+							<div class="field half">
+								<label for="name">Ваше ім'я</label>
+								<input type="text" name="name" id="name" placeholder="Карина" required />
+							</div>
+							<div class="field half">
+								<label for="contact">Телефон / Telegram</label>
+								<input type="text" name="contact" id="contact" placeholder="@username або +380..." required />
+							</div>
+							<div class="field half">
+								<label for="category">Тип одягу для здачі</label>
+								<select name="category" id="category">
+									<option value="denim">Джинсові вироби (куртки, джинси)</option>
+									<option value="outerwear">Пальта, піджаки, плащі</option>
+									<option value="linen">Лляні та бавовняні речі</option>
+									<option value="scraps">Текстильні залишки та клаптики</option>
+								</select>
+							</div>
+							<div class="field half">
+								<label for="reward">Бажана форма винагороди</label>
+								<select name="reward" id="reward">
+									<option value="discount">Знижка 20% на майбутні замовлення</option>
+									<option value="bonus">Накопичувальні еко-бали Velora</option>
+								</select>
+							</div>
+							<div class="field">
+								<label for="notes">Опис стану речей</label>
+								<textarea name="notes" id="notes" rows="3" placeholder="Опишіть кількість, матеріал та особливості..."></textarea>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Подати заявку на здачу" class="primary" /></li>
+						</ul>
+					</form>
+				</section>
+
+				<!-- Блок 8: Форма індивідуального замовлення Custom -->
+				<section id="custom" class="content-block form-card secondary">
+					<h2>Замовити індивідуальну редизайн-трансформацію</h2>
+					<p>Бажаєте перешити свою улюблену пам'ятну річ на сучасний кастомний айтем? Надішліть попередній запит нашим дизайнерам.</p>
+					
+					<form method="post" action="#" onsubmit="event.preventDefault(); alert('Дякуємо за звернення! Дизайнер Velora зв\'яжеться з вами для обговорення ескізу.');">
+						<div class="fields">
+							<div class="field half">
+								<label for="c_name">Ім'я</label>
+								<input type="text" name="c_name" id="c_name" placeholder="Олена" required />
+							</div>
+							<div class="field half">
+								<label for="c_contact">Telegram / Instagram</label>
+								<input type="text" name="c_contact" id="c_contact" placeholder="@nickname" required />
+							</div>
+							<div class="field">
+								<label for="c_idea">Опишіть бажаний виріб та вихідні матеріали</label>
+								<textarea name="c_idea" id="c_idea" rows="3" placeholder="Наприклад: хочу перетворити старі широкі джинси на корсетний топ та міні-шопер..."></textarea>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Розрахувати індивідуальний кастом" class="primary" /></li>
+						</ul>
+					</form>
+				</section>
+
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<section class="footer-contacts">
+					<h2>Контакти та інформація студії</h2>
+					<p>Velora Archive & Upcycling Studio | Одеса, Україна</p>
+					<p>Instagram: @velora.upcycling | Email: studio@velora-concept.com</p>
+					<ul class="icons-list">
+						<li><a href="https://oneu.edu.ua/" target="_blank">Одеський національний економічний університет</a></li>
+						<li><a href="https://github.com" target="_blank">Платформа розробки GitHub</a></li>
+						<li><a href="https://html5up.net/phantom" target="_blank">Вихідний відкритий прототип Phantom (HTML5 UP)</a></li>
+					</ul>
+				</section>
+
+				<div class="footer-bottom">
+					<!-- ОБОВ'ЯЗКОВИЙ ДИСКЛЕЙМЕР ВИКЛАДАЧА ДЛЯ ЗАЛІКУ -->
+					<p class="disclaimer">
+						&copy; 2026 Увага! Цей веб-сайт є навчальним проєктом, створеним виключно з освітньою метою в межах навчального курсу «Прикладні інформаційно-аналітичні рішення». Сайт не здійснює комерційної діяльності, не надає платних послуг і не призначений для отримання прибутку.
+					</p>
+					<p class="author">
+						Зробила сайт: <strong>Полтарацька Карина Олегівна</strong>
+					</p>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Скрипти керування мобільним меню та мультифільтрацією каталогу Velora -->
+	<script>
+		// Меню Phantom
+		const menuToggle = document.querySelector('a[href="#menu"]');
+		const menu = document.getElementById('menu');
+		const body = document.body;
+
+		const closeBtn = document.createElement('a');
+		closeBtn.href = '#';
+		closeBtn.className = 'close';
+		closeBtn.innerHTML = '&times;';
+		menu.appendChild(closeBtn);
+
+		function openMenu(e) {
+			e.preventDefault();
+			body.classList.add('is-menu-visible');
+		}
+
+		function closeMenu(e) {
+			if (e) e.preventDefault();
+			body.classList.remove('is-menu-visible');
+		}
+
+		menuToggle.addEventListener('click', openMenu);
+		closeBtn.addEventListener('click', closeMenu);
+
+		menu.querySelectorAll('a:not(.close)').forEach(a => {
+			a.addEventListener('click', () => {
+				body.classList.remove('is-menu-visible');
+			});
+		});
+
+		// Інтерактивна система фільтрації каталогу Velora
+		const formatFilter = document.getElementById('formatFilter');
+		const categoryFilter = document.getElementById('categoryFilter');
+		const materialFilter = document.getElementById('materialFilter');
+		const sortPrice = document.getElementById('sortPrice');
+		const passportOnly = document.getElementById('passportOnly');
+		const itemsGrid = document.getElementById('itemsGrid');
+		const itemsCount = document.getElementById('itemsCount');
+
+		function filterAndSortVelora() {
+			const cards = Array.from(itemsGrid.querySelectorAll('.v-card'));
+			const selectedFormat = formatFilter.value;
+			const selectedCategory = categoryFilter.value;
+			const selectedMaterial = materialFilter.value;
+			const selectedSort = sortPrice.value;
+			const isPassport = passportOnly.checked;
+
+			let visibleCount = 0;
+
+			cards.forEach(card => {
+				const cardFormat = card.getAttribute('data-format');
+				const cardCategory = card.getAttribute('data-category');
+				const cardMaterial = card.getAttribute('data-material');
+				const cardPassport = card.getAttribute('data-passport') === 'true';
+
+				let matchFormat = (selectedFormat === 'all' || cardFormat === selectedFormat);
+				let matchCategory = (selectedCategory === 'all' || cardCategory === selectedCategory);
+				let matchMaterial = (selectedMaterial === 'all' || cardMaterial === selectedMaterial);
+				let matchPassport = !isPassport || cardPassport;
+
+				if (matchFormat && matchCategory && matchMaterial && matchPassport) {
+					card.style.display = 'flex';
+					visibleCount++;
+				} else {
+					card.style.display = 'none';
+				}
+			});
+
+			// Сортування вартості
+			if (selectedSort !== 'default') {
+				const visibleCards = cards.filter(card => card.style.display !== 'none');
+				visibleCards.sort((a, b) => {
+					const priceA = parseInt(a.getAttribute('data-price'), 10);
+					const priceB = parseInt(b.getAttribute('data-price'), 10);
+					return selectedSort === 'asc' ? priceA - priceB : priceB - priceA;
+				});
+				visibleCards.forEach(card => itemsGrid.appendChild(card));
+			}
+
+			itemsCount.textContent = visibleCount;
+		}
+
+		formatFilter.addEventListener('change', filterAndSortVelora);
+		categoryFilter.addEventListener('change', filterAndSortVelora);
+		materialFilter.addEventListener('change', filterAndSortVelora);
+		sortPrice.addEventListener('change', filterAndSortVelora);
+		passportOnly.addEventListener('change', filterAndSortVelora);
+	</script>
+</body>
+</html>
