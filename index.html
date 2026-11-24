@@ -10,6 +10,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="Velora — інноваційна студія стійкої моди та апсайклінгу. Ми даруємо вживаному одягу друге життя за допомогою сучасного дизайну." />
 	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- Google Analytics 4 (Замініть G-XXXXXXXXXX на ваш ідентифікатор) -->
+	<!--
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-XXXXXXXXXX');
+	</script>
+	-->
+
+	<!-- Microsoft Clarity (Замініть CLARITY_ID на ваш Project ID) -->
+	<!--
+	<script type="text/javascript">
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "CLARITY_ID");
+	</script>
+	-->
+
 	<style>
 		/* Інтерактивний каталог та панель фільтрів Velora */
 		.velora-catalog-section {
@@ -244,7 +267,7 @@
 					<span class="badge">Sustainable Fashion & Upcycling Initiative</span>
 					<h1>Give clothes a second life.<br>Create something extraordinary.</h1>
 					<p class="lead">
-						<strong>Velora</strong> — інноваційна компанія у сфері стійкої моди (Sustainable Fashion), що спеціалізується на переробці, реставрації та дизайнерському переосмисленні старого, непотрібного та пошкодженого одягу. Ми розглядаємо вживані речі як джерело високого естетичного потенціалу, перетворюючи текстиль на унікальні авторські вироби.
+						<strong>Velora</strong> — інноваційна компанія у сфері стійкої моди (Sustainable Fashion), що спеціалізується на переробці, реставрації та дизайнерському переосмисленні старого, непотрібного та пошкодженого одягу. Ми розглядаємо вживані речі як джерело високого естетичного потенціалу, перетворюючи текстиль, що міг би опинитися на смітнику, на сучасні, функціональні та унікальні вироби.
 					</p>
 				</header>
 
@@ -683,7 +706,7 @@
 
 	<!-- Скрипти керування мобільним меню та мультифільтрацією каталогу Velora -->
 	<script>
-		// Меню Phantom
+		// Реалізація спливаючого бічного меню Phantom без сторонніх бібліотек
 		const menuToggle = document.querySelector('a[href="#menu"]');
 		const menu = document.getElementById('menu');
 		const body = document.body;
